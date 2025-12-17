@@ -10,9 +10,9 @@ prompt_template = ChatPromptTemplate.from_messages([
 ])
 
 llm = ChatOpenAI(
-    model=load_envkey()["model_name"],
-    base_url=load_envkey()["base_url"],
-    api_key=load_envkey()["api_key"],
+    model=load_envkey('MODEL_NAME'),
+    base_url=load_envkey('BASE_URL'),
+    api_key=load_envkey('API_KEY_DASHSCOPE'),
 )
 
 parser = StrOutputParser()
