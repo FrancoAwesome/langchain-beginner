@@ -1,6 +1,6 @@
 from langchain_community.document_loaders import TextLoader, DirectoryLoader
 
-loader = TextLoader("../resources/meituan-questions.txt", encoding="utf-8")
+loader = TextLoader("../../resources/meituan-questions.txt", encoding="utf-8")
 # loader = TextLoader("../resources/test/test.txt")
 documents = loader.load()
 print(documents)
