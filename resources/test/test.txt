@@ -1,0 +1,8 @@
+Q: What's your name?
+Tom
+
+Q: How's the weather?
+Cloudy
+
+Q: Where's the cinema?
+Go straight and turn right at the second road.
