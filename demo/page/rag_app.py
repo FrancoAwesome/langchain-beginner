@@ -1,10 +1,11 @@
 import streamlit as st
 import requests
-import json
-import time
+import os
+
+baseUrl = os.getenv("OLLAMA_BASE_URL")
 
 # Ollama API配置
-OLLAMA_API_URL = "http://localhost:11434/api/generate"
+OLLAMA_API_URL = f"{baseUrl}/api/generate"
 MODEL_NAME = "qwen2.5:7b"
 
 # 模拟文档库（实际项目中可替换为真实数据源）
@@ -146,7 +147,7 @@ def main():
     col3, col4 = st.columns(2)
     with col3:
         try:
-            response = requests.get("http://localhost:11434/api/tags")
+            response = requests.get(f"{baseUrl}/api/tags")
             if response.status_code == 200:
                 st.success("✅ Ollama服务运行正常")
                 print(response.json())
