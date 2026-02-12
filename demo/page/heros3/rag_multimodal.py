@@ -10,7 +10,7 @@ from langchain_community.embeddings import DashScopeEmbeddings
 chinese_separators = ["\n\n", "\n", "。", "！", "？", "；", "，", " ", ""]
 
 class RAGMultimodal:
-    def __init__(self, resources_dir="../../../resources/heros3", embedding_model="text-embedding-v2"):
+    def __init__(self, resources_dir="./resources", embedding_model="text-embedding-v2"):
         self.resources_dir = resources_dir
         self.embedding_model = embedding_model
         self.vector_store = None

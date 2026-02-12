@@ -8,12 +8,12 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI
 from rag_multimodal import RAGMultimodal
 
-target_directory = "../../../resources/uploads"
+target_directory = "./resources"
 
 def initialize_app():
     load_dotenv()
     if 'rag_system' not in st.session_state:
-        st.session_state.rag_system = RAGMultimodal()
+        st.session_state.rag_system = RAGMultimodal(resources_dir=target_directory)
         with st.spinner('初始化知识库...'):
             success = st.session_state.rag_system.initialize_knowledge_base()
             if success:
