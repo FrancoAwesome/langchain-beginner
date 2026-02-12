@@ -8,7 +8,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI
 from rag_multimodal import RAGMultimodal
 
-target_directory = "./resources"
+target_directory = "./resources/heros3"
 
 def initialize_app():
     load_dotenv()
