@@ -2,13 +2,14 @@ from langchain_core.output_parsers import StrOutputParser
 import chapter3_embedding
 
 query = "在线支付取消订单后钱怎么返还"
+# query = "请介绍英雄无敌3兵种天使"
 
 from langchain_community.embeddings import DashScopeEmbeddings
 from config.load_key import load_envkey
 import os
 
-if not os.environ.get("DASHSCOPE_API_KEY"):
-    os.environ["DASHSCOPE_API_KEY"] = load_envkey("API_KEY_DASHSCOPE")
+if not os.environ.get("API_KEY_DASHSCOPE"):
+    os.environ["API_KEY_DASHSCOPE"] = load_envkey("API_KEY_DASHSCOPE")
 
 embedding_model = DashScopeEmbeddings(model="text-embedding-v1")
 
@@ -18,7 +19,7 @@ vector_store = Chroma(embedding_function=embedding_model)
 retriever = vector_store.as_retriever()
 
 # results= vector_store.similarity_search(query, k=2)
-# print(results)
+# print(f"similarity search: {results}")
 
 from langchain_openai import ChatOpenAI
 llm = ChatOpenAI(

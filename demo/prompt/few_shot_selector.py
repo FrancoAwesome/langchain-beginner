@@ -1,7 +1,9 @@
 from dotenv import load_dotenv
+from langchain_community.embeddings import DashScopeEmbeddings
 from langchain_core.example_selectors import SemanticSimilarityExampleSelector
 from langchain_community.vectorstores import Chroma
 from langchain_openai import OpenAIEmbeddings
+import os
 import dotenv
 load_dotenv()
 
@@ -19,8 +21,12 @@ examples = [
             """
     },
     {
-        "question": "什么是Python？",
+        "question": "什么是Python?",
         "answer": "Python是一种编程语言"
+    },
+    {
+        "question": "目前电影票房第一名是谁?",
+        "answer": "《阿凡达》的票房是 27.9 亿美元。《复仇者联盟 4:终局之战》的票房是 27.8 亿美元。因此,《阿凡达》的票房更高。"
     }
 ]
 
@@ -28,15 +34,16 @@ example_selector = SemanticSimilarityExampleSelector.from_examples(
     # example list
     examples,
     # check language similarity
-    OpenAIEmbeddings(),
+    DashScopeEmbeddings(dashscope_api_key=os.environ.get("API_KEY_DASHSCOPE")),
+    # OpenAIEmbeddings(),
     # VectorStore class
     Chroma,
     # example count
     k=1
 )
 
-question = "谁的寿命更长，穆罕默德阿里还是艾伦图灵?"
-selected_examples = example_selector.get_selected_example({
+question = ("谁的寿命更长?")
+selected_examples = example_selector.select_examples({
     "question": question
 })
 print(f"最相似的示例：{question}")
