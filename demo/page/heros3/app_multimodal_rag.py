@@ -12,8 +12,9 @@ target_directory = "./resources/heros3"
 
 def initialize_app():
     load_dotenv()
+    embedding_model = os.getenv("EMBEDDING_MODEL")
     if 'rag_system' not in st.session_state:
-        st.session_state.rag_system = RAGMultimodal(resources_dir=target_directory)
+        st.session_state.rag_system = RAGMultimodal(resources_dir=target_directory, embedding_model=embedding_model)
         with st.spinner('初始化知识库...'):
             success = st.session_state.rag_system.initialize_knowledge_base()
             if success:

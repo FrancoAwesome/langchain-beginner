@@ -10,7 +10,7 @@ from langchain_community.embeddings import DashScopeEmbeddings
 chinese_separators = ["\n\n", "\n", "。", "！", "？", "；", "，", " ", ""]
 
 class RAGMultimodal:
-    def __init__(self, resources_dir="./resources", embedding_model="text-embedding-v2"):
+    def __init__(self, resources_dir="./resources/heros3", embedding_model="text-embedding-v4"):
         self.resources_dir = resources_dir
         self.embedding_model = embedding_model
         self.vector_store = None
@@ -18,7 +18,7 @@ class RAGMultimodal:
         self.text_splitter = RecursiveCharacterTextSplitter(
             chunk_size=1000,
             chunk_overlap=200,
-            # separators=chinese_separators
+            separators=chinese_separators
         )
         # self.text_splitter = CharacterTextSplitter(
         #     chunk_size=500,
